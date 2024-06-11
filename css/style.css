@@ -143,3 +143,13 @@ body {
 #final-result.failure {
     background-color: #dc3545; /* Red color for failure message */
 }
+
+/* Background image styling */
+body {
+    background-image: url('/images/background.jpg');
+    background-size: cover; /* or 'contain' based on your preference */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Rest of your CSS styles */
