@@ -5,20 +5,21 @@
     box-sizing: border-box;
 }
 
-/* Body styling */
+/* Body styling with background image */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background: url('/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
     font-family: Arial, sans-serif;
 }
 
 /* Game container styling */
 .game-container {
     text-align: center;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -34,7 +35,7 @@ body {
 .choices {
     display: flex;
     gap: 15px;
-    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .choice {
@@ -58,7 +59,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    background-color: #c7a7a7;
+    background-color: #f0f0f0;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(124, 103, 103, 0.1);
@@ -72,20 +73,20 @@ body {
 
 .score-table th {
     background-color: #007bff;
-    color: #9b8282;
+    color: #ffffff;
     font-weight: bold;
 }
 
 .score-table tr:nth-child(even) {
-    background-color: #afbfcf;
+    background-color: #e9ecef;
 }
 
 .score-table tr:hover {
-    background-color: #7b8792;
+    background-color: #ced4da;
 }
 
 .score-table td {
-    border-bottom: 1px solid #8c96a0;
+    border-bottom: 1px solid #dee2e6;
 }
 
 .score-table td:last-child {
@@ -98,58 +99,58 @@ body {
 
 /* Play Again button styling */
 #reset {
-    padding: 15px 160px;
+    padding: 15px 40px;
     background-color: #4f7daf;
     color: #ffffff;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
+    margin-top: 20px;
 }
 
 #reset:hover {
-    background-color: #d4747e;
-    transform: scale(1.05);
+    background-color: #d4747e; /* Red background color on hover */
+    transform: scale(1.05); /* Scale up slightly on hover */
 }
 
 /* Styling for game result text */
 #result-text {
-    font-size: 1.2em;
-    color: #333;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
     transition: opacity 0.3s ease-in-out;
 }
 
-/* Final result message styling */
+.result.tie {
+    color: #999; /* Change color for tie result */
+}
+
+.result.win {
+    color: #28a745; /* Green color for win result */
+}
+
+.result.lose {
+    color: #dc3545; /* Red color for lose result */
+}
+
+/* Styling for final result text */
 #final-result {
     font-size: 1.5em;
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #007bff; /* Default background color */
-    text-align: center;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    font-weight: bold;
+    margin-top: 20px;
     opacity: 0;
     transition: opacity 0.5s ease;
-    z-index: 1000;
 }
 
 #final-result.success {
-    background-color: #28a745; /* Green color for success message */
+    color: #28a745; /* Green color for success message */
 }
 
 #final-result.failure {
-    background-color: #dc3545; /* Red color for failure message */
+    color: #dc3545; /* Red color for failure message */
 }
 
-/* Background image styling */
-body {
-    background-image: url('/images/background.jpg');
-    background-size: cover; /* or 'contain' based on your preference */
-    background-repeat: no-repeat;
-    background-position: center;
+#final-result.tie {
+    color: #007bff; /* Blue color for tie message */
 }
-
-/* Rest of your CSS styles */

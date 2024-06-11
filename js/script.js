@@ -23,21 +23,24 @@ function playGame(event) {
     const computerChoice = getComputerChoice();
     const result = getResult(userChoice, computerChoice);
 
-    resultText.textContent = `You chose ${userChoice}, computer chose ${computerChoice}. ${result}`;
-    resultText.classList.add('result-enter');
-    setTimeout(() => {
-        resultText.classList.remove('result-enter');
-    }, 300);
+    // Clear previous result class
+    resultText.className = '';
 
+    resultText.textContent = `You chose ${userChoice}, computer chose ${computerChoice}. ${result}`;
+    
     if (result === "You win!") {
         userScore++;
+        resultText.classList.add('result', 'win');
     } else if (result === "You lose!") {
         computerScore++;
+        resultText.classList.add('result', 'lose');
+    } else {
+        resultText.classList.add('result', 'tie');
     }
-
+    
     updateScores();
     round++;
-
+    
     if (round > 5) {
         determineOverallWinner();
     }
@@ -78,8 +81,9 @@ function determineOverallWinner() {
         finalResultText.classList.add('failure');
     } else {
         finalResultText.textContent = "It's a tie overall!";
+        finalResultText.classList.add('tie');
     }
-    finalResultText.style.opacity = 1;
+    finalResultText.style.opacity = 1; 
 }
 
 function resetGame() {
@@ -87,6 +91,9 @@ function resetGame() {
     computerScore = 0;
     round = 1;
     resultText.textContent = '';
+    resultText.className = '';
     finalResultText.textContent = '';
+    finalResultText.className = '';
+    finalResultText.style.opacity = 0;
     updateScores();
 }
