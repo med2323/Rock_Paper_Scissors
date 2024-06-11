@@ -1,0 +1,145 @@
+/* Basic reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+/* Game container styling */
+.game-container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.game-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Choices styling */
+.choices {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.choice {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+    filter: grayscale(0%);
+}
+
+.choice:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    filter: grayscale(50%);
+}
+
+/* Score table styling */
+.score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #c7a7a7;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(124, 103, 103, 0.1);
+}
+
+.score-table th,
+.score-table td {
+    padding: 20px 25px;
+    text-align: center;
+}
+
+.score-table th {
+    background-color: #007bff;
+    color: #9b8282;
+    font-weight: bold;
+}
+
+.score-table tr:nth-child(even) {
+    background-color: #afbfcf;
+}
+
+.score-table tr:hover {
+    background-color: #7b8792;
+}
+
+.score-table td {
+    border-bottom: 1px solid #8c96a0;
+}
+
+.score-table td:last-child {
+    border-right: none;
+}
+
+.score-table td:first-child {
+    border-left: none;
+}
+
+/* Play Again button styling */
+#reset {
+    padding: 15px 160px;
+    background-color: #4f7daf;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+#reset:hover {
+    background-color: #d4747e;
+    transform: scale(1.05);
+}
+
+/* Styling for game result text */
+#result-text {
+    font-size: 1.2em;
+    color: #333;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Final result message styling */
+#final-result {
+    font-size: 1.5em;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #007bff; /* Default background color */
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+#final-result.success {
+    background-color: #28a745; /* Green color for success message */
+}
+
+#final-result.failure {
+    background-color: #dc3545; /* Red color for failure message */
+}
