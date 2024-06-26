@@ -1,64 +1,55 @@
 const choices = document.querySelectorAll('.choice');
 const resultText = document.getElementById('result-text');
-const roundText = document.getElementById('round');
 const userScoreText = document.getElementById('user-score');
 const computerScoreText = document.getElementById('computer-score');
 const finalResultText = document.getElementById('final-result');
-const resetButton = document.getElementById('reset');
+const playAgainButton = document.getElementById('play-again');
 
 let userScore = 0;
 let computerScore = 0;
-let round = 1;
 
 choices.forEach(choice => {
-    choice.addEventListener('click', playGame);
+    choice.addEventListener('click', () => playRound(choice.id));
 });
 
-resetButton.addEventListener('click', resetGame);
+playAgainButton.addEventListener('click', resetGame);
 
-function playGame(event) {
-    if (round > 5) return;
+function playRound(playerSelection) {
+    const computerSelection = getComputerChoice();
+    const result = getResult(playerSelection, computerSelection);
 
-    const userChoice = event.target.id;
-    const computerChoice = getComputerChoice();
-    const result = getResult(userChoice, computerChoice);
-
-    // Clear previous result class
-    resultText.className = '';
-
-    resultText.textContent = `You chose ${userChoice}, computer chose ${computerChoice}. ${result}`;
-    
     if (result === "You win!") {
         userScore++;
-        resultText.classList.add('result', 'win');
+        resultText.className = 'result win';
+        resultText.innerHTML = `You chose ${playerSelection}, computer chose ${computerSelection}.<br>You win! 😊`;
     } else if (result === "You lose!") {
         computerScore++;
-        resultText.classList.add('result', 'lose');
+        resultText.className = 'result lose';
+        resultText.innerHTML = `You chose ${playerSelection}, computer chose ${computerSelection}.<br>You lose! 😢`;
     } else {
-        resultText.classList.add('result', 'tie');
+        resultText.className = '';
+        resultText.innerHTML = `You chose ${playerSelection}, computer chose ${computerSelection}.<br>It's a tie!`;
     }
-    
+
     updateScores();
-    round++;
-    
-    if (round > 5) {
-        determineOverallWinner();
+
+    if (userScore === 5 || computerScore === 5) {
+        announceWinner();
     }
 }
 
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
-    const randomIndex = Math.floor(Math.random() * choices.length);
-    return choices[randomIndex];
+    return choices[Math.floor(Math.random() * choices.length)];
 }
 
-function getResult(userChoice, computerChoice) {
-    if (userChoice === computerChoice) {
+function getResult(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
         return "It's a tie!";
     } else if (
-        (userChoice === 'rock' && computerChoice === 'scissors') ||
-        (userChoice === 'paper' && computerChoice === 'rock') ||
-        (userChoice === 'scissors' && computerChoice === 'paper')
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')
     ) {
         return "You win!";
     } else {
@@ -69,31 +60,35 @@ function getResult(userChoice, computerChoice) {
 function updateScores() {
     userScoreText.textContent = userScore;
     computerScoreText.textContent = computerScore;
-    roundText.textContent = round;
 }
 
-function determineOverallWinner() {
-    if (userScore > computerScore) {
-        finalResultText.textContent = "Congratulations! You are the overall winner!";
-        finalResultText.classList.add('success');
-    } else if (userScore < computerScore) {
-        finalResultText.textContent = "Sorry! The computer is the overall winner!";
-        finalResultText.classList.add('failure');
+function announceWinner() {
+    if (userScore === 5) {
+        finalResultText.innerHTML = "Congratulations! You are the overall winner! 😊";
+        finalResultText.className = 'result win';
     } else {
-        finalResultText.textContent = "It's a tie overall!";
-        finalResultText.classList.add('tie');
+        finalResultText.innerHTML = "Sorry! The computer is the overall winner! 😢";
+        finalResultText.className = 'result lose';
     }
-    finalResultText.style.opacity = 1; 
+    finalResultText.style.opacity = 1;
+
+    choices.forEach(choice => {
+        choice.disabled = true;
+    });
+
+    playAgainButton.style.display = 'block';
 }
 
 function resetGame() {
     userScore = 0;
     computerScore = 0;
-    round = 1;
-    resultText.textContent = '';
-    resultText.className = '';
-    finalResultText.textContent = '';
-    finalResultText.className = '';
-    finalResultText.style.opacity = 0;
     updateScores();
+    resultText.innerHTML = '';
+    finalResultText.innerHTML = '';
+    finalResultText.style.opacity = 0;
+    playAgainButton.style.display = 'none';
+
+    choices.forEach(choice => {
+        choice.disabled = false;
+    });
 }

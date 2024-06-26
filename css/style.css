@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url('../images/bg2.jpeg') no-repeat center center fixed; 
+    background: url('/images/bg2.jpeg') no-repeat center center fixed; 
     background-size: cover;
     font-family: Arial, sans-serif;
 }
@@ -39,102 +39,44 @@ body {
 }
 
 .choice {
-    width: 100px;
-    height: 100px;
+    padding: 10px 20px;
     cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-    filter: grayscale(0%);
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .choice:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    filter: grayscale(50%);
+    background-color: #0056b3;
 }
 
-/* Score table styling */
-.score-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(124, 103, 103, 0.1);
+/* Score styling */
+.score {
+    margin-bottom: 20px;
 }
 
-.score-table th,
-.score-table td {
-    padding: 20px 25px;
-    text-align: center;
+.score p {
+    font-size: 1.2em;
 }
 
-.score-table th {
-    background-color: #007bff;
-    color: #ffffff;
-    font-weight: bold;
-}
-
-.score-table tr:nth-child(even) {
-    background-color: #e9ecef;
-}
-
-.score-table tr:hover {
-    background-color: #ced4da;
-}
-
-.score-table td {
-    border-bottom: 1px solid #dee2e6;
-}
-
-.score-table td:last-child {
-    border-right: none;
-}
-
-.score-table td:first-child {
-    border-left: none;
-}
-
-/* Play Again button styling */
-#reset {
-    padding: 15px 40px;
-    background-color: #4f7daf;
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-    margin-top: 20px;
-}
-
-#reset:hover {
-    background-color: #d4747e; /* Red background color on hover */
-    transform: scale(1.05); /* Scale up slightly on hover */
-}
-
-/* Styling for game result text */
-#result-text {
+/* Result text styling */
+.result {
     font-size: 1.5em;
     font-weight: bold;
     margin-top: 20px;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.result.tie {
-    color: #999; /* Change color for tie result */
 }
 
 .result.win {
-    color: #28a745; /* Green color for win result */
+    color: #28a745; /* Green for winner */
 }
 
 .result.lose {
-    color: #dc3545; /* Red color for lose result */
+    color: #dc3545; /* Red for loser */
 }
 
-/* Styling for final result text */
+/* Final result text styling */
 #final-result {
     font-size: 1.5em;
     font-weight: bold;
@@ -143,14 +85,26 @@ body {
     transition: opacity 0.5s ease;
 }
 
-#final-result.success {
-    color: #28a745; /* Green color for success message */
+#final-result.win {
+    color: #28a745; /* Green for success message */
 }
 
-#final-result.failure {
-    color: #dc3545; /* Red color for failure message */
+#final-result.lose {
+    color: #dc3545; /* Red for failure message */
 }
 
-#final-result.tie {
-    color: #007bff; /* Blue color for tie message */
+/* Play Again button styling */
+#play-again {
+    padding: 10px 20px;
+    background-color: #28a745; /* Green color */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s, transform 0.2s;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
